@@ -3,7 +3,8 @@ package chat.client.message;
 import chat.client.network.ConnectionInfo;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class MessageSender {
     private static MessageSender instance = null;

@@ -1,13 +1,22 @@
 package chat.client.frame;
 
 import chat.client.listener.LoginButtonListener;
+import chat.client.network.ConnectionTermination;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Login extends JFrame {
     public Login() {
         setTitle("채팅 프로그램");
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ConnectionTermination.getInstance().disconnect();
+            }
+        });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container container = getContentPane();
         container.setLayout(new BorderLayout());
@@ -45,7 +54,7 @@ public class Login extends JFrame {
         gbc.gridy = 1;
         panel.add(passwdField, gbc);
 
-        JButton loginButton = new JButton("로그인");;
+        JButton loginButton = new JButton("로그인");
         loginButton.addActionListener(new LoginButtonListener(idField, passwdField));
         gbc.gridx = 0;
         gbc.gridy = 2;

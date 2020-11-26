@@ -38,10 +38,6 @@ public class ConnectionInfo {
         return port;
     }
 
-    public void setPort(int port) {
-        this.port = port;
-    }
-
     public Socket getSocket() {
         return socket;
     }

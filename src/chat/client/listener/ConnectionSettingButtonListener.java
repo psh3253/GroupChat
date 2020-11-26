@@ -10,18 +10,15 @@ import java.awt.event.ActionListener;
 
 public class ConnectionSettingButtonListener implements ActionListener {
     private final String address;
-    private final int port;
 
-    public ConnectionSettingButtonListener(JTextField addressField, JTextField portField) {
+    public ConnectionSettingButtonListener(JTextField addressField) {
         this.address = addressField.getText();
-        this.port = Integer.parseInt(portField.getText());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton connectionSettingButton = (JButton) e.getSource();
         ConnectionInfo.getInstance().setAddress(address);
-        ConnectionInfo.getInstance().setPort(port);
         if (ConnectionTest.getInstance().PingPong()) {
             connectionSettingButton.getTopLevelAncestor().setVisible(false);
             new Client();

@@ -30,32 +30,21 @@ public class ConnectionSetting extends JFrame {
         gbc.gridy = 0;
         panel.add(addressLabel, gbc);
 
-        JLabel portLabel = new JLabel("서버 포트");
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        panel.add(portLabel, gbc);
-
         JTextField addressField = new JTextField(10);
         addressField.setText("localhost");
         gbc.gridx = 1;
         gbc.gridy = 0;
         panel.add(addressField, gbc);
 
-        JTextField portField = new JTextField(10);
-        portField.setText("9999");
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        panel.add(portField, gbc);
-
         JButton ConnectionSettingButton = new JButton("확인");
-        ConnectionSettingButton.addActionListener(new ConnectionSettingButtonListener(addressField, portField));
+        ConnectionSettingButton.addActionListener(new ConnectionSettingButtonListener(addressField));
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.gridwidth = 2;
         panel.add(ConnectionSettingButton, gbc);
 
         setLocationRelativeTo(null);
-        setSize(250, 150);
+        setSize(230, 120);
         setVisible(true);
     }
 }

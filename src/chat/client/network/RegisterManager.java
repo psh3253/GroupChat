@@ -1,13 +1,15 @@
 package chat.client.network;
 
 import javax.swing.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class RegisterManager {
-    public static final int REGISTER_SUCCESS = 0;
+    public static final int REGISTER_SUCCESS = 3;
 
-    public static final int ID_ALREADY_EXIT = 1;
+    public static final int ID_ALREADY_EXIT = 4;
 
     private static RegisterManager instance = null;
 
@@ -17,7 +19,7 @@ public class RegisterManager {
         return instance;
     }
 
-    public void Register(String id, String passwd, JButton registerButton) {
+    public boolean Register(String id, String passwd, JButton registerButton) {
         ObjectInputStream in;
         ObjectOutputStream out;
         Socket socket;
@@ -39,15 +41,16 @@ public class RegisterManager {
                     int responseCode = Integer.parseInt(response[1]);
                     if (responseCode == REGISTER_SUCCESS) {
                         JOptionPane.showMessageDialog(registerButton, "회원가입이 완료되었습니다.");
-                        return;
+                        return true;
                     } else if (responseCode == ID_ALREADY_EXIT) {
                         JOptionPane.showMessageDialog(registerButton, "이미 존재하는 아이디 입니다.", "회원가입 실패", JOptionPane.WARNING_MESSAGE);
-                        return;
+                        return false;
                     }
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
             JOptionPane.showMessageDialog(registerButton, "회원가입중에 문제가 발생하였습니다.", "회원가입 실패", JOptionPane.WARNING_MESSAGE);
         }
+        return false;
     }
 }

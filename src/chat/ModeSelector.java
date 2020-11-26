@@ -1,7 +1,7 @@
 package chat;
 
 import chat.client.frame.ConnectionSetting;
-import chat.server.Server;
+import chat.server.frame.Server;
 
 import javax.swing.*;
 import java.awt.*;

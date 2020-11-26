@@ -36,9 +36,10 @@ public class MessageReceiver implements Runnable {
                     content.append(messageObject[1] + "  >> " + messageObject[2] + "\n");
                 } else if (messageObject[0].equals("concurrentUserCount")) {
                     concurrentUserLabel.setText("동시 접속자수 : " + messageObject[1] + "명");
-                } else if(messageObject[0].equals("join"))
-                {
+                } else if (messageObject[0].equals("join")) {
                     content.append(messageObject[1] + "님이 입장하셨습니다.\n");
+                } else if (messageObject[0].equals("quit")) {
+                    content.append(messageObject[1] + "님이 퇴장하셨습니다.\n");
                 }
             }
         } catch (SocketException e) {

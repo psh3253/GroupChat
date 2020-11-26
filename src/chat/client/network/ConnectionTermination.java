@@ -13,13 +13,13 @@ public class ConnectionTermination {
         return instance;
     }
 
-    public void disconnect()
-    {
+    public void disconnect() {
         Socket socket;
         ObjectOutputStream out;
 
-        String[] disconnectObject = new String[1];
+        String[] disconnectObject = new String[2];
         disconnectObject[0] = "disconnect";
+        disconnectObject[1] = ConnectionInfo.getInstance().getId();
         try {
             socket = ConnectionInfo.getInstance().getSocket();
             out = ConnectionInfo.getInstance().getOut();

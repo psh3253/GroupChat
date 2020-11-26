@@ -1,11 +1,22 @@
 package chat.client.frame;
 
+import chat.client.listener.RegisterButtonListener;
+import chat.client.network.ConnectionTermination;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Register extends JFrame {
     public Register() {
         setTitle("채팅 프로그램");
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ConnectionTermination.getInstance().disconnect();
+            }
+        });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container container = getContentPane();
         container.setLayout(new BorderLayout());
@@ -45,7 +56,7 @@ public class Register extends JFrame {
         panel.add(passwdField, gbc);
 
         JButton registerButton = new JButton("회원가입");
-
+        registerButton.addActionListener(new RegisterButtonListener(idField, passwdField));
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;

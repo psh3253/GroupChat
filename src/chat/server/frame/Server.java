@@ -1,13 +1,22 @@
-package chat.server;
+package chat.server.frame;
 
+import chat.server.file.UserInfoLoader;
 import chat.server.network.ServerRunnable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Server extends JFrame {
     public Server() {
         setTitle("채팅 서버 프로그램");
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                UserInfoLoader.getInstance().writeUserInfoFile();
+            }
+        });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container container = getContentPane();
         container.setLayout(new BorderLayout());
@@ -63,5 +72,7 @@ public class Server extends JFrame {
 
         Thread thread = new Thread(new ServerRunnable(content, concurrentUserLabel));
         thread.start();
+
+        UserInfoLoader.getInstance().readUserInfoFile();
     }
 }

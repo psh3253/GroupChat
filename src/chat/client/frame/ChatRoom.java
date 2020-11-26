@@ -1,18 +1,25 @@
 package chat.client.frame;
 
-import chat.client.listener.WindowCloseListener;
 import chat.client.message.MessageReceiver;
 import chat.client.message.MessageSender;
+import chat.client.network.ConnectionTermination;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ChatRoom extends JFrame {
     public ChatRoom() {
         setTitle("채팅 프로그램");
-        addWindowListener(new WindowCloseListener());
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ConnectionTermination.getInstance().disconnect();
+            }
+        });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container container = getContentPane();
         container.setLayout(new BorderLayout());
