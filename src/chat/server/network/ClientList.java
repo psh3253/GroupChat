@@ -6,13 +6,13 @@ import java.net.Socket;
 
 public class ClientList {
 
-    private String id;
+    private final String id;    // 클라이언트 아이드
 
-    private Socket socket;
+    private final Socket socket;    // 클라이언트 소켓
 
-    private ObjectInputStream in;
+    private final ObjectInputStream in; // 클라이언트 입력 스트림
 
-    private ObjectOutputStream out;
+    private final ObjectOutputStream out;   // 클라이언트 출력 스트림
 
     public ClientList(String id, Socket socket, ObjectInputStream in, ObjectOutputStream out) {
         this.id = id;
@@ -21,35 +21,24 @@ public class ClientList {
         this.out = out;
     }
 
+    // 클라이언트 아이디 가져오기 함수
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
-
+    // 클라이언트 소켓 가져오기 함수
     public Socket getSocket() {
         return socket;
     }
 
+    // 클라이언트 입력 스트림 가져오기 함수
     public ObjectInputStream getIn() {
         return in;
     }
 
-    public void setOut(ObjectOutputStream out) {
-        this.out = out;
-    }
-
+    // 클라이언트 출력 스트림 가져오기 함수
     public ObjectOutputStream getOut() {
         return out;
     }
 
-    public void setIn(ObjectInputStream in) {
-        this.in = in;
-    }
 }
